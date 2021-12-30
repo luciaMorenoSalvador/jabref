@@ -18,6 +18,7 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableMap;
+import javafx.scene.Node;
 
 import org.jabref.architecture.AllowedToUseLogic;
 import org.jabref.logic.bibtex.FileFieldWriter;
@@ -52,7 +53,7 @@ import org.slf4j.LoggerFactory;
  * In case you search for a builder as described in Item 2 of the book "Effective Java", you won't find one. Please use the methods {@link #withCitationKey(String)} and {@link #withField(Field, String)}.
  */
 @AllowedToUseLogic("because it needs access to parser and writers")
-public class BibEntry implements Cloneable {
+public class BibEntry extends Node implements Cloneable {
 
     public static final EntryType DEFAULT_TYPE = StandardEntryType.Misc;
     private static final Logger LOGGER = LoggerFactory.getLogger(BibEntry.class);
@@ -308,6 +309,11 @@ public class BibEntry implements Cloneable {
      */
     public String getId() {
         return id;
+    }
+
+    @Override
+    public Node getStyleableNode() {
+        return super.getStyleableNode();
     }
 
     /**
